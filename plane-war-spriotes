@@ -1,0 +1,22 @@
+import pygame
+SCR_RECT = pygame.Rect(0,0,1540,800)
+REF_SH = 60
+CREATE_AREMY_EVENT = pygame.USEREVENT
+
+class GameSprite(pygame.sprite.Sprite):
+    def __init__(self,image_name,speed=5):
+        super(GameSprite,self).__init__()
+        self.image = pygame.image.load(image_name)
+        self.rect = self.image.get_rect()
+        self.speed = speed
+    def update(self, *args):
+        self.rect.y += self.speed
+class BackG(GameSprite):
+    def __init__(self,is_alt = True):
+        super(BackG, self).__init__("背景.png")
+        if is_alt:
+            self.rect.y = -SCR_RECT.height
+    def update(self):
+        super().update()
+        if self.rect.y >= SCR_RECT.height:
+            self.rect.y = -self.rect.height
