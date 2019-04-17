@@ -1,0 +1,21 @@
+from pygame import *
+init()
+bg = image.load("背景.png")
+beg_gam = image.load("开始游戏.png")
+screen = display.set_mode((1540, 800))
+screen.blit(bg, (0, 0))
+screen.blit(beg_gam, (600, 650))
+display.update()
+x, y = mouse.get_pos()
+# 设置循环
+while True:
+    x, y = mouse.get_pos()
+    for things in event.get():
+        if things.type == QUIT:
+            quit()
+            exit()
+        if things.type == MOUSEBUTTONDOWN:
+            if x >= 600 and y>= 650 and x <= 900 and y <= 750:
+                from plane_main import *
+                mg = main_game()
+                mg.game_start()
